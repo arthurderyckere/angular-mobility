@@ -1,0 +1,9 @@
+<ng-container *ngIf="station; else elseBlock">
+    <p>id: {{station.id}}</p>
+    <p>name: {{station.name}}</p>
+    <p>location X: {{station.locationX}}</p>
+    <p>location Y: {{station.locationY}}</p>
+</ng-container>
+<ng-template #elseBlock>
+    <p>No station selected.</p>
+</ng-template>

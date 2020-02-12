@@ -1,0 +1,19 @@
+<ng-container *ngIf="displayState">
+    <div *ngIf="!displayState.loaded && !displayState.loading">
+        <button (click)="loadStations()">Load Stations</button>
+    </div>
+    <div *ngIf="displayState.errorMessage && displayState.errorMessage != ''">
+        <p style="color: red;">{{displayState.errorMessage}}</p>
+    </div>
+    <div *ngIf="displayState.loading">
+        <app-spinner></app-spinner>
+    </div>
+    <div *ngIf="stations && displayState.loaded">
+        <select id="stationsList" [(ngModel)]="selectedStation">
+            <option *ngFor="let st of stations" [ngValue]="st">
+                {{st.name}}
+            </option>
+        </select>
+    </div>
+    <app-station [station]="selectedStation"></app-station>
+</ng-container>
