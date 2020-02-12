@@ -1,0 +1,15 @@
+<h2 *ngIf="stationId">Liveboard for station: {{stationId}}</h2>
+<ng-container *ngIf="liveboard">
+    <table>
+        <thead>
+            <th>Destination</th>
+            <th>Departure time</th>
+            <th>Platform</th>
+        </thead>
+        <tbody>
+            <tr *ngFor="let dep of liveboard.departures">{{dep.destinationStationName}}</tr>
+            <tr *ngFor="let dep of liveboard.departures">{{dep.time}}</tr>
+            <tr *ngFor="let dep of liveboard.departures">{{dep.platform}}</tr>
+        </tbody>
+    </table>
+</ng-container>

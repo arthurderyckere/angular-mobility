@@ -1,1 +1,24 @@
 /* You can add global styles to this file, and also import other style files */
+button {
+    padding: 10px 20px;
+    background-color: white;
+    border-color: #11a2e6;
+    border-radius: 10px;
+    border-style: solid;
+}
+button:hover {
+    color: white;
+    background-color: #11a2e6;
+}
+select {
+    padding: 10px;
+}
+select:focus {
+    border-color: #11a2e6;
+}
+option {
+    padding: 5px;
+}
+body {
+    font-family: sans-serif;
+}

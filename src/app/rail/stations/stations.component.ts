@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { IRailService } from "../services/iRail.service";
-import { DisplayState } from '../model/displayState';
-import { Station } from '../model/station';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Station } from 'src/app/model/station';
+import { DisplayState } from 'src/app/model/displayState';
+import { IRailService } from '../service/iRail.service';
 
 @Component({
   selector: 'app-stations',
@@ -12,6 +12,7 @@ export class StationsComponent implements OnInit {
   stations: Station[];
   selectedStation: Station;
   displayState: DisplayState;
+  @Output() stationChanged = new EventEmitter();
 
   constructor(private iRailService: IRailService) {
   }
@@ -45,13 +46,16 @@ export class StationsComponent implements OnInit {
           errorMessage: undefined
         }
       },
-      error: (err: any) => {
+      error: (err: object) => {
         this.displayState = {
           loading: false,
           loaded: false,
-          errorMessage: err && typeof (err) === "string" ? err.toString() : "Technical Error."
+          errorMessage: err ? err.toString() : "Technical Error."
         }
       }
     });
+  }
+  handleSelectStation() {
+    this.stationChanged.emit(this.selectedStation.id);
   }
 }
